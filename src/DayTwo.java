@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class DayTwo {
@@ -131,9 +132,10 @@ public class DayTwo {
 	public static void problem1() {
 		bufferPrint("Generate Multiplication Table w/ For Loop");
 		
-		for(int i = 0; i <= 10; i++) {
-			for(int j = 0; j <= 10; j++) {
-				System.out.print((i*j) + "\t");
+		for(int i = 1; i <= 5; i++) {
+			for(int j = 1; j <= 5; j++) {
+				//System.out.print((i*j) + "\t");
+				System.out.println(i + " x " + j + " = " + (i*j));
 			}
 			System.out.println();
 		}
@@ -153,7 +155,7 @@ public class DayTwo {
 			num2 = num0 + num1;
 		}
 		
-		System.out.println();
+		System.out.println("\n");
 	}
 
 	public static void problem3() {
@@ -163,7 +165,7 @@ public class DayTwo {
 			System.out.print(c + " ");
 		}
 		
-		System.out.println();
+		System.out.println("\n");
 	}
 
 	public static void problem4() {
@@ -236,23 +238,24 @@ public class DayTwo {
 		int[][] matrix1 = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {10, 11, 12}};
 		int[][] matrix2 = {{1, 1, 1}, {2, 2, 2}, {3, 3, 3}, {4, 4, 4}};
 		
-		System.out.println("\n" + "Matrix 1: ");
+		System.out.println("Matrix 1: ");
 		printMatrix(matrix1);
-		System.out.println("\n" + "Matrix 2: ");
+		System.out.println("Matrix 2: ");
 		printMatrix(matrix2);
 		
 		int[][] sum = addMatrix(matrix1, matrix2);
-		System.out.println("\n" + "Sum Matrix: ");
+		System.out.println("Sum Matrix: ");
 		printMatrix(sum);
 	}
 	
 	public static void printMatrix(int[][] matrix) {
 		for(int[] r : matrix) {
 			for(int num : r) {
-				System.out.print(r + " ");
+				System.out.print(num + " ");
 			}
 			System.out.println();
 		}
+		System.out.println();
 	}
 
 	public static int[][] addMatrix(int[][] matrix1, int[][] matrix2) {
@@ -268,7 +271,7 @@ public class DayTwo {
 	}
 	
 	public static void problem8() {
-		System.out.println("\n" + "Count Vowels, Consonants, Digits, and Spaces " + "\n");
+		bufferPrint("Count Vowels, Consonants, Digits, and Spaces ");
 		
 		int vCount = 0;
 		int cCount = 0;
@@ -304,10 +307,30 @@ public class DayTwo {
 	}
 	
 	public static void problem9() {
+		bufferPrint("Print Half Pyramid");
 		
+		int baseLength = 10;
+		
+		System.out.println("*" + "\n" + "**");
+		
+		for(int i = 0; i <= baseLength; i++) {
+			System.out.print("* " );
+			for(int j = 0; j < i; j++) {
+				System.out.print(" ");
+			}
+			System.out.println("*");
+		}
+		
+		for(int i = 0; i <= baseLength+3; i++) {
+			System.out.print("*");
+		}
+		
+		System.out.println("\n");
 	}
 	
 	public static void problem10() {
+		bufferPrint("Count Number of Words");
+		
 		System.out.print("Input String: ");
 		scan.nextLine();
 		String s = scan.nextLine();
@@ -316,7 +339,17 @@ public class DayTwo {
 	}
 
 	public static void problem11() {
-	
+		bufferPrint("Find Specific Char in Sentence");
+		
+		System.out.print("Input Sentence: ");
+		scan.nextLine();
+		String s = scan.nextLine();
+		
+		System.out.print("Input Char: ");
+		char c = scan.nextLine().charAt(0);
+		
+		bufferPrint("First Occurence of Char: " + s.indexOf(c) + "\n"
+					+ "Last Occurence of Char: " + s.lastIndexOf(c));
 	}
 	
 	public static void problem12() {
@@ -344,30 +377,118 @@ public class DayTwo {
 	}
 	
 	public static void problem13() {
-		
+		System.out.println();
 	}
 
 	public static void problem14() {
-	
+		System.out.println();
 	}
 	
 	public static void problem15() {
+		bufferPrint("Find Chars in the String \"Hello, World\"");
 		
+		String helloWorld = "Hello, World";
+		
+		System.out.println("'o' First Occurence: " + helloWorld.indexOf('o'));
+		System.out.println("'o' Last Occurence: " + helloWorld.lastIndexOf('o'));
+		System.out.println("',' First Occurence: "+ helloWorld.indexOf(','));
+		System.out.println("',' Last Occurence: "+ helloWorld.lastIndexOf(',') + "\n");
 	}
 	
 	public static void problem16() {
+		bufferPrint("Find Occurence of All Letters in String");
 		
+		int[] letterCount = new int[26];
+		
+		System.out.print("Input a String: ");
+		scan.nextLine();
+		String s = scan.nextLine().toLowerCase();
+		
+		for(int i = 0; i < s.length(); i++) {
+			if(Character.isLetter(s.charAt(i))) {
+				letterCount[s.charAt(i)-97]++;
+			}
+		}
+		
+		System.out.println();
+		
+		for(char c = 'a'; c <= 'z'; c++) {
+			System.out.print(c + " : " + letterCount[c-97] + "\t");
+			
+			if((c-96) % 5 == 0) {
+				System.out.println();
+			}
+		}
+		
+		System.out.println();
 	}
 
 	public static void problem17() {
+		bufferPrint("Check if String is Palindrome");
+		
+		System.out.print("Input a String: ");
+		scan.nextLine();
+		String s = scan.nextLine().toLowerCase();
+		
+		if(isPalindrome(s))
+			bufferPrint("Is a Palindrome");
+		else
+			bufferPrint("Not a Palindrome");
+	}
 	
+	public static boolean isPalindrome(String s) {
+		for(int i = 0; i < s.length()/2; i++) {
+			if(s.charAt(i) != s.charAt(s.length()-i-1))
+				return false;
+		}
+		return true;
 	}
 	
 	public static void problem18() {
+		bufferPrint("Find Largest & Smallest Words in the String \"This is an umbrella\"");
 		
+		/*System.out.print("Input a String: ");
+		scan.nextLine();
+		String s = scan.nextLine().toLowerCase();*/
+		
+		String s = "This is an umbrella";
+		
+		String[] words = s.split(" ");
+		String largest = words[0];
+		String smallest = words[0];
+		
+		for(int i = 1; i < words.length; i++) {
+			if(words[i].length() > largest.length()) {
+				largest = words[i];
+			}
+			if(words[i].length() < smallest.length()) {
+				smallest = words[i];
+			}
+		}
+		
+		System.out.println("Largest Word: " + largest + "\n" 
+							+ "Smallest Word: " + smallest + "\n");
 	}
 	
 	public static void problem19() {
+		String[] friendNames = {"Rachel", "Adam", "Elijah", "Alex", "Ryan", "Lea", "Emily", "Rena", "Mion", "Satoko", "Rika"};
 		
+		System.out.println("\n" + "Unsorted Array:");
+		for(int i = 0; i < friendNames.length; i++) {
+			System.out.print(friendNames[i]);
+			if(i != friendNames.length-1)
+				System.out.print(", ");
+		}
+		
+		Arrays.sort(friendNames);
+		
+		System.out.println("\n\n" + "Sorted Array");
+		for(int i = 0; i < friendNames.length; i++) {
+			System.out.print(friendNames[i]);
+			if(i != friendNames.length-1)
+				System.out.print(", ");
+		}
+		
+		System.out.println("\n");
 	}
 }
