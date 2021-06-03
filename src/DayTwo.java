@@ -231,9 +231,42 @@ public class DayTwo {
 	}
 	
 	public static void problem7() {
+		bufferPrint("Add Two Matrices w/ Multi-dimensional Arrays");
 		
+		int[][] matrix1 = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {10, 11, 12}};
+		int[][] matrix2 = {{1, 1, 1}, {2, 2, 2}, {3, 3, 3}, {4, 4, 4}};
+		
+		System.out.println("\n" + "Matrix 1: ");
+		printMatrix(matrix1);
+		System.out.println("\n" + "Matrix 2: ");
+		printMatrix(matrix2);
+		
+		int[][] sum = addMatrix(matrix1, matrix2);
+		System.out.println("\n" + "Sum Matrix: ");
+		printMatrix(sum);
+	}
+	
+	public static void printMatrix(int[][] matrix) {
+		for(int[] r : matrix) {
+			for(int num : r) {
+				System.out.print(r + " ");
+			}
+			System.out.println();
+		}
 	}
 
+	public static int[][] addMatrix(int[][] matrix1, int[][] matrix2) {
+		int[][] sumMatrix = new int[matrix1.length][matrix1[0].length];
+		
+		for(int i = 0; i < matrix1.length; i++) {
+			for(int j = 0; j < matrix1[0].length; j++) {
+				sumMatrix[i][j] = matrix1[i][j] + matrix2[i][j];
+			}
+		}
+		
+		return sumMatrix;
+	}
+	
 	public static void problem8() {
 		System.out.println("\n" + "Count Vowels, Consonants, Digits, and Spaces " + "\n");
 		
