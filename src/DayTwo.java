@@ -377,11 +377,47 @@ public class DayTwo {
 	}
 	
 	public static void problem13() {
+		bufferPrint("Use Interface For Math Operations");
+		
+		Compute add = new Addition();
+		Compute subtract = new Subtraction();
+		Compute multiply = new Multiplication();
+		Compute divide = new Division();
+		
+		UseCompute comp = new UseCompute();
+		
+		int num1 = 36;
+		int num2 = 6;
+		
+		System.out.println("Num 1 = " + num1 + "\n" 
+							+ "Num 2 = " + num2 + "\n");
+		
+		System.out.print("Addition \t: ");
+		comp.useCom(add, num1, num2);
+		System.out.print("Subtraction \t: ");
+		comp.useCom(subtract, num1, num2);
+		System.out.print("Multiplication \t: ");
+		comp.useCom(multiply, num1, num2);
+		System.out.print("Division \t: ");
+		comp.useCom(divide, num1, num2);
+		
 		System.out.println();
 	}
 
 	public static void problem14() {
-		System.out.println();
+		bufferPrint("Implement Cylinder w/ Interfaces");
+		
+		Cylinder c = new Cylinder(6.0, 5.0, "Blue");
+		
+		System.out.println("Cylinder Created." + "\n" 
+							+ "Cylinder Surface Area: " + c.area() + "\n" 
+							+ "Cylinder Volume: " + c.volume() + "\n" 
+							+ "Cylinder Color: " + c.getColor() + "\n\n"
+							+ "Setting Color to Red" + "\n");
+		
+		c.setColor("Red");
+		
+		System.out.println("Cylinder Color: " + c.getColor() + "\n");
 	}
 	
 	public static void problem15() {
